@@ -57,7 +57,6 @@ if DATA_FILE.exists():
 else:
     history = []
 
-# Avoid duplicates if action runs twice within same hour
 if history:
     latest = history[-1]
 
@@ -67,6 +66,7 @@ if history:
         and latest["requested"] == record["requested"]
     ):
         print("No changes detected")
+        exit(0)
 
 history.append(record)
 
