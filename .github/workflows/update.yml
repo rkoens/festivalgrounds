@@ -2,7 +2,7 @@ name: Update Ticket Stats
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
   workflow_dispatch:
 
