@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paylogic Resale Tracker</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Weekend incl. campsite</h1>
+
+    <div class="stats">
+        <div>
+            <h2 id="currentSold">-</h2>
+            <p>Total sold</p>
+        </div>
+
+        <div>
+            <h2 id="hourlySales">-</h2>
+            <p>Sold last hour</p>
+        </div>
+
+        <div>
+            <h2 id="dailySales">-</h2>
+            <p>Sold last 24h</p>
+        </div>
+    </div>
+
+    <canvas id="salesChart"></canvas>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
