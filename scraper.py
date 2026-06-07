@@ -1,64 +1,75 @@
 import json
-from datetime import datetime, timezone
 from pathlib import Path
+from datetime import datetime, timezone
 
 import requests
 
-URL = "https://shopping-api.paylogic.com/resale/78c8dcf48ab34755b3c50590227174f4"
+API_URL = "https://shopping-api.paylogic.com/resale/78c8dcf48ab34755b3c50590227174f4"
+TARGET_UID = "f0ca64f50a3046b495cb993e06617826"
 
-TOKEN = "YOUR_BEARER_TOKEN"
-
-HEADERS = {
-    "Authorization": f"Bearer {TOKEN}",
-    "Accept": "application/json",
-}
+DATA_FILE = Path("docs/history.json")
 
 
-def find_statistics(node):
-    """
-    Recursively find statistics blocks.
-    """
-    results = []
-
+def find_category(node):
     if isinstance(node, dict):
-        if "statistics" in node:
-            results.append(node["statistics"])
+
+        if node.get("uid") == TARGET_UID:
+            return node
 
         for value in node.values():
-            results.extend(find_statistics(value))
+            result = find_category(value)
+
+            if result:
+                return result
 
     elif isinstance(node, list):
+
         for item in node:
-            results.extend(find_statistics(item))
+            result = find_category(item)
 
-    return results
+            if result:
+                return result
+
+    return None
 
 
-response = requests.get(URL, headers=HEADERS, timeout=30)
+response = requests.get(API_URL, timeout=30)
 response.raise_for_status()
 
 data = response.json()
 
-stats = find_statistics(data)
+category = find_category(data)
 
-# Weekend incl. campsite
-sold = stats[0]["sold"]
+if not category:
+    raise Exception("Category not found")
+
+stats = category["statistics"]
 
 record = {
     "timestamp": datetime.now(timezone.utc).isoformat(),
-    "sold": sold,
+    "sold": stats["sold"],
+    "available": stats["available"],
+    "requested": stats["requested"]
 }
 
-history_file = Path("data/history.json")
-history_file.parent.mkdir(exist_ok=True)
+if DATA_FILE.exists():
+    history = json.loads(DATA_FILE.read_text())
+else:
+    history = []
 
-history = []
+# Avoid duplicates if action runs twice within same hour
+if history:
+    latest = history[-1]
 
-if history_file.exists():
-    history = json.loads(history_file.read_text())
+    if (
+        latest["sold"] == record["sold"]
+        and latest["available"] == record["available"]
+        and latest["requested"] == record["requested"]
+    ):
+        print("No changes detected")
 
 history.append(record)
 
-history_file.write_text(json.dumps(history, indent=2))
+DATA_FILE.write_text(json.dumps(history, indent=2))
 
-print(f"Sold: {sold}")
+print(record)
