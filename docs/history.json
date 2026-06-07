@@ -4,5 +4,15 @@
     "sold": 856,
     "available": 0,
     "requested": 0
+  },
+  {
+    "timestamp": "2026-06-07T23:50:53.719226+00:00",
+    "sold": 856,
+    "listing_count": 0,
+    "listing_ids": [],
+    "prices": [],
+    "lowest_price": null,
+    "highest_price": null,
+    "avg_price": null
   }
 ]
