@@ -17,6 +17,21 @@ async function loadData() {
         latestTime.getTime() - 24 * 60 * 60 * 1000
     );
 
+    const lastUpdated = new Date(latest.timestamp);
+
+    const minutesAgo = Math.floor(
+        (Date.now() - lastUpdated.getTime()) / 60000
+    );
+    
+    document.getElementById("lastUpdated").textContent =
+        `${lastUpdated.toLocaleString("nl-NL", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        })} (${minutesAgo} min geleden)`;
+
     let record24hAgo = null;
 
     for (let i = data.length - 1; i >= 0; i--) {
