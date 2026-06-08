@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Paylogic Resale Tracker</title>
+    <meta charset="utf-8">
+
+    <title>BKS Resale Tracker</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -9,25 +11,38 @@
 </head>
 <body>
 
-    <h1>BKS Weekend incl. campsite</h1>
+    <h1>BKS Weekend incl. Campsite Resale Tracker</h1>
 
     <div class="stats">
-        <div>
-            <h2 id="currentSold">-</h2>
-            <p>Total sold</p>
+
+        <div class="card">
+            <h2 id="totalSold">-</h2>
+            <p>Total Sold</p>
         </div>
 
-        <div>
-            <h2 id="hourlySales">-</h2>
-            <p>Sold last hour</p>
+        <div class="card">
+            <h2 id="sold1h">-</h2>
+            <p>Sold Last Hour</p>
         </div>
 
-        <div>
-            <h2 id="dailySales">-</h2>
-            <p>Sold last 24h</p>
+        <div class="card">
+            <h2 id="sold24h">-</h2>
+            <p>Sold Last 24 Hours</p>
         </div>
+
+        <div class="card">
+            <h2 id="listingCount">-</h2>
+            <p>Current Listings</p>
+        </div>
+
+        <div class="card">
+            <h2 id="lowestPrice">-</h2>
+            <p>Lowest Price</p>
+        </div>
+
     </div>
 
+    <h2>Total Tickets Sold</h2>
     <canvas id="salesChart"></canvas>
 
     <script src="app.js"></script>
