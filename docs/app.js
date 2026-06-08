@@ -75,9 +75,6 @@ async function loadData() {
     document.getElementById("sold24h").textContent =
         sold24h;
 
-    document.getElementById("sold1h").textContent =
-        sold1h;
-
     //
     // CHART
     //
