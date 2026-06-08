@@ -29,14 +29,20 @@ async function loadData() {
         }
     }
 
-    let sold24h = 0;
-
+    let sold24h;
+    
     if (record24hAgo) {
+    
         sold24h =
             latest.sold -
             record24hAgo.sold;
+    
+    } else {
+    
+        sold24h =
+            latest.sold -
+            data[0].sold;
     }
-
     //
     // SOLD LAST HOUR
     //
