@@ -38,9 +38,9 @@ async function loadData() {
 
         const yesterday = data[data.length - 25];
 
-        document.getElementById("dailySales").textContent =
-            latest.sold - yesterday.sold;
-    }
+        document.getElementById(
+            "sold24h"
+        ).textContent = sold24h;
 
     const labels = data.map(
         x => new Date(x.timestamp).toLocaleString()
