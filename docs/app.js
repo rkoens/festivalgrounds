@@ -7,16 +7,31 @@ async function loadData() {
     if (!data.length) return;
 
     const latest = data[data.length - 1];
-
-    document.getElementById("currentSold").textContent =
-        latest.sold;
-
-    if (data.length >= 2) {
-
-        const previous = data[data.length - 2];
-
-        document.getElementById("hourlySales").textContent =
-            latest.sold - previous.sold;
+    
+    const latestTime = new Date(latest.timestamp);
+    
+    const cutoff24h = new Date(
+        latestTime.getTime() - 24 * 60 * 60 * 1000
+    );
+    
+    let record24hAgo = null;
+    
+    for (let i = data.length - 1; i >= 0; i--) {
+    
+        const t = new Date(data[i].timestamp);
+    
+        if (t <= cutoff24h) {
+            record24hAgo = data[i];
+            break;
+        }
+    }
+    
+    let sold24h = 0;
+    
+    if (record24hAgo) {
+        sold24h =
+            latest.sold -
+            record24hAgo.sold;
     }
 
     if (data.length >= 25) {
