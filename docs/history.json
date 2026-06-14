@@ -676,5 +676,15 @@
     "lowest_price": 100.0,
     "highest_price": 100.0,
     "avg_price": 100.0
+  },
+  {
+    "timestamp": "2026-06-14T18:59:17.410956+00:00",
+    "sold": 1157,
+    "listing_count": 0,
+    "listing_ids": [],
+    "prices": [],
+    "lowest_price": null,
+    "highest_price": null,
+    "avg_price": null
   }
 ]
