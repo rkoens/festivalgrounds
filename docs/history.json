@@ -608,5 +608,19 @@
     "lowest_price": 299.0,
     "highest_price": 299.0,
     "avg_price": 299.0
+  },
+  {
+    "timestamp": "2026-06-14T10:31:45.261566+00:00",
+    "sold": 1156,
+    "listing_count": 1,
+    "listing_ids": [
+      "b36ffa9fd4b54f47b15a64a7ca96108c"
+    ],
+    "prices": [
+      299.0
+    ],
+    "lowest_price": 299.0,
+    "highest_price": 299.0,
+    "avg_price": 299.0
   }
 ]
