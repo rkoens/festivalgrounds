@@ -1806,5 +1806,15 @@
     "lowest_price": null,
     "highest_price": null,
     "avg_price": null
+  },
+  {
+    "timestamp": "2026-06-27T05:10:58.589306+00:00",
+    "sold": 1157,
+    "listing_count": 0,
+    "listing_ids": [],
+    "prices": [],
+    "lowest_price": null,
+    "highest_price": null,
+    "avg_price": null
   }
 ]
